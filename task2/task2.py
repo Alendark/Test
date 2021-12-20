@@ -1,27 +1,26 @@
-f1 = open('num1.txt', 'r')
-r1 = f1.read()
-xo = float(r1)
+f1 = open('file_1.txt', 'r')
+k1 = f1.read()
+cor = k1.split()
+kr = [float(x) for x in cor]
 
-f2 = open('num2.txt', 'r')
-r2 = f2.read()
-yo = float(r2)
+f2 = open('file_2.txt', 'r')
+k2 = f2.read()
+cer = k2.split()
+kt = [float(x) for x in cer]
 
-f3 = open('num3.txt', 'r')
-r3 = f3.read()
-r = float(r3)
+import math
 
-f4 = open('num4.txt', 'r')
-r4 = f4.read()
-y = float(r4)
+num = 0
 
-f5 = open('num5.txt', 'r')
-r5 = f5.read()
-x = float(r5)
+while num < len(kt):
+    x = kt[num]
+    y = kt[num + 1]
+    hyp = math.sqrt((x - kr[0])**2 + (y - kr[1])**2)
 
-if (x - xo) * (x - xo) + (y - yo) * (y - yo) < r * r:
-    print("Точка принадлежит окружности")
-elif (x - xo) * (x - xo) + (y - yo) * (y - yo) > r * r:
-    print("Точка не принадлежит окружности")
-else:
-    print("Точка на окружности")
-    
+    if hyp < kr[2]:
+        print("1")
+    elif hyp == kr[2]:
+        print("0")
+    else:
+        print("2")
+    num+=2
