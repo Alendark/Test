@@ -1,25 +1,28 @@
 import json
 
-json_file = 'report.json'
+with open('tests.json', 'r') as file_1:
+    data = json.load(file_1)
+    print(data)
 
-report = [{"id": 2,"value": "passed"}, 
-    {"id": 41,"value": "passed"},
-    {"id": 73,"value": "passed"},
-    {"id": 110,"value": "failed"},
-    {"id": 122,"value": "failed"},
-    {"id": 234,"value": "passed"},
-    {"id": 238,"value": "passed"},
-    {"id": 345,"value": "passed"},
-    {"id": 653,"value": "passed"},
-    {"id": 690,"value": "failed"},
-    {"id": 5321,"value": "passed"},
-    {"id": 5322,"value": "failed"}]
+with open('values.json', 'r') as file_2:
+    todos = json.load(file_2)
+    print(todos)
 
+for k, v in todos.items():
 
-res = json.dumps(report, sort_keys=True, indent=4)
+    for i in v:
+        for t, y in data.items():
 
-with open(json_file, 'w') as f:
-    for d in report:
-        json.dump(d, f)
-        f.write('\n')
+            if i.get('id') == data.get('id'):
+                data['value'] = i['value']
+
+            elif isinstance(y, list):
+                for elem in y:
+
+                    if i.get('id') == elem.get('id'):
+                        elem['value'] = i['value']
+
+with open('report.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, indent=4)
+                
 

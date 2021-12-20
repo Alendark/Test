@@ -1,6 +1,8 @@
-nums = []
-for i in range(int(input())):  
-    nums.append(int(input()))
+with open('num.txt', 'r') as f:
+    nums = f.read()
 
-m = sorted(nums)[len(nums) // 2]
-print(sum(abs(v - m) for v in nums))
+nums = nums.split()
+n = [int(x) for x in nums]
+
+m = sorted(n)[len(n) // 2]
+print(sum(abs(v - m) for v in n))
